@@ -4,6 +4,7 @@ class CreateBooks < ActiveRecord::Migration[6.1]
 
       t.string  :title    #本のタイトル
       t.text    :body     #感想
+      
       t.integer :user_id  #外部キー
       t.timestamps
     end
