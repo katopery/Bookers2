@@ -1,48 +1,12 @@
-<div class="container px-5 px-sm-0">
+<div class="container">
   <div class="row">
-    <div class="col-md-3">
-      <h2>User info</h2>
-      <p>画像</p>
-      
-      <% @books.each do |book| %>
-        <% if book.image.attached? %>
-          <%= image_tag book.image, size: "100x100" %>
-        <% else %>
-          <%= image_tag 'no_image', size: "100x100" %>
-        <% end %>
-  
-        <table>
-          <tbody>
-            <tr>
-              <td>name</td>
-              <td><%= book.user.name %></td>
-            </tr>
-            <tr>
-              <td>introduction</td>
-              <td><%= book.user.introduction %></td>
-            </tr>
-          </tbody>
-        </table>
-      <% end %>
-
-      <%= link_to edit_user_path(current_user) do %>
-        <i class="fa-solid fa-user-gear"></i>
-      <% end %>
-
-      <h2>New book</h2>
-      <%= form_with model: @book do |f| %>
-        <lavel>Title</lavel>
-        <%= f.text_field :title %>
-        <lavel>Opinion</lavel>
-        <%= f.text_area :body %>
-        <%= f.submit 'Create Book' %>
-      <% end %>
-    </div>
+    
+    <%= render 'list', book: @book %>
 
     <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
       
-      <table class="table table-hover ">
+      <table class="table table-hover table-inverse">
         <thead>
           <tr>
             <th></th>
@@ -53,7 +17,7 @@
         <tbody>
           <% @books.each do |book| %>
             <tr>
-              <td>        
+              <td>
                 <% if book.image.attached? %>
                   <%= image_tag book.image, size: "80x80" %>
                 <% else %>
