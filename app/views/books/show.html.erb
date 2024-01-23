@@ -10,20 +10,22 @@
         <tbody>
           <tr>
             <td>
-              <% if @book.image.attached? %>
-                <%= image_tag book.user.get_profile_image, size: "100x100" %>
-              <% else %>
-                <%= image_tag 'no_image', size: "100x100" %>
+              <%= link_to user_path do %>
+                <% if @book.image.attached? %>
+                  <%= image_tag book.image, size: "80x80" %>
+                <% else %>
+                  <%= image_tag 'no_image', size: "80x80" %>
+                <% end %>
+                </br>
+                <%= @book.user.name %>
               <% end %>
-              </br>
-              <%= link_to @book.user.name, user_path(current_user) %>
             </td>
             <td>
               <%= link_to @book.title, book_path %>
             </td>
             <td><%= @book.body %></td>
             
-            <% if @book.user == current_user %>
+            <% if @book.user_id == current_user.id %>
               <td>
                 <%= link_to "Edit", edit_book_path(@book), class: "btn btn-sm btn-success"%>
               </td>
