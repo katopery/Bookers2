@@ -44,7 +44,7 @@ class BooksController < ApplicationController
     @book.destroy
     redirect_to books_path
   end
-
+  
   
   private
   # 投稿データのストロングパラメータ
@@ -54,8 +54,8 @@ class BooksController < ApplicationController
   
   # アクセス制限
   def is_matching_login_user
-    user = User.find(params[:id])
-    unless user.id == current_user.id
+    book = Book.find(params[:id])
+    unless book.user.id == current_user.id
       redirect_to books_path
     end
   end
